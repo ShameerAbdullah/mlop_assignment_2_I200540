@@ -1,0 +1,51 @@
+### Documentation: Data Preprocessing Steps and DVC Setup
+
+#### 1. Data Preprocessing Steps:
+The data preprocessing steps involve extracting raw data from the BBC and Dawn websites, performing transformations on the extracted data, and loading the transformed data into a storage location. Here's a detailed overview of each step:
+
+##### 1.1. Extract Data:
+- **Purpose:** Extract news articles from the BBC and Dawn websites using web scraping techniques.
+- **Implementation:**
+  - Use the `requests` library to make HTTP requests to the websites.
+  - Utilize `BeautifulSoup` for parsing HTML and extracting relevant information such as links and article content.
+  - Extract links from the BBC and Dawn websites.
+  - Extract articles from the obtained links, filtering out irrelevant content.
+  - Save the extracted data to a CSV file (`data.csv`) for further processing.
+
+##### 1.2. Transform Data:
+- **Purpose:** Perform data transformations to prepare the extracted raw data for analysis and storage.
+- **Implementation:**
+  - Read the raw data from the CSV file (`data.csv`) generated in the extraction step.
+  - Apply transformations such as converting titles to uppercase, removing special characters, or standardizing formats.
+  - Save the transformed data to a new CSV file (`transformed_data.csv`) for improved readability and consistency.
+
+#### 2. DVC (Data Version Control) Setup:
+DVC is a version control system for data science and machine learning projects, facilitating efficient management of large datasets and model files. Here's a guide to setting up DVC for managing the ETL pipeline:
+
+##### 2.1. Installation:
+- Install DVC using pip: `pip install dvc`.
+
+##### 2.2. Initialization:
+- Navigate to the project directory containing the data files.
+- Initialize DVC: `dvc init`.
+
+##### 2.3. Adding Data Files:
+- Add the raw data file (`data.csv`) to DVC for versioning: `dvc add data.csv`.
+- Add the transformed data file (`transformed_data.csv`) to DVC: `dvc add transformed_data.csv`.
+
+##### 2.4. Remote Storage Configuration:
+- Configure a remote storage location for storing versioned data files. For example, Google Drive can be used as a remote storage option.
+- Add Google Drive as a remote: `dvc remote add gdrive gdrive://<folder_id>` (Replace `<folder_id>` with the ID of the Google Drive folder).
+- Set Google Drive as the default remote: `dvc remote default gdrive`.
+
+##### 2.5. Pushing Data to Remote:
+- Push the data files to the configured remote storage: `dvc push`.
+
+##### 2.6. Version Control Integration:
+- Initialize Git if not already initialized: `git init`.
+- Add all files to the Git index: `git add .`.
+- Commit changes with a descriptive message: `git commit -m "Add raw and transformed data files"`.
+- Push changes to the designated GitHub repository: `git push`.
+
+#### Conclusion:
+By following these documentation guidelines, users can understand the data preprocessing steps involved in the ETL process and set up DVC for efficient management and versioning of data files. This documentation facilitates reproducibility, collaboration, and maintenance of the ETL pipeline in data-centric projects.
